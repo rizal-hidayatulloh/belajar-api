@@ -16,6 +16,7 @@ while($baris = $hasil->fetch_assoc()) {
     $pass_db = $baris['password'];
 
     echo $user_db;
+    echo $pass_db;
 
 }
 
