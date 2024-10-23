@@ -27,7 +27,7 @@ while($baris = $hasil->fetch_assoc()) {
 $servername = "localhost";
 $username   = "root";
 $password   ="";
-$database   =db_latihan;
+$database   ="db_latihan";
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 
