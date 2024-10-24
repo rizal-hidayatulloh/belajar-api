@@ -20,19 +20,21 @@ while($baris = $hasil->fetch_assoc()) {
     $nama_db = $baris['nama_barang'];
     $harga_db = $baris['harga'];
     $stok_db = $baris['stok'];
+    
 
-   if($nama_db == $nama_fr) {
+   if($nama_db === $nama_fr) {
     if($harga_db == $harga_fr) {
-        if($stok_db == $stok_fr) {
+        if($stok_db <= $stok_fr) {
         $status="pembelian berhasil";
 
         } else {
-            $status = "stok hanya ada 1"; 
+            $status = "stok tidak mencukupi"; 
         }
    
     } else {
         $status = "harga tidak sesuai";
     }
+    break;
    } else {
     $status = "barang tidak ada";
    }
