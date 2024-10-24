@@ -1,4 +1,8 @@
 <?php
+   $nama_fr = $_GET['nama'];
+   $harga_fr = $_GET['harga'];
+   $stok_fr = $_GET['stok'];
+
 // Menambahkan informasi credentials
 $servername = "localhost"; // 127.0.0.1
 $username = "root";
@@ -16,13 +20,32 @@ while($baris = $hasil->fetch_assoc()) {
     $nama_db = $baris['nama_barang'];
     $harga_db = $baris['harga'];
     $stok_db = $baris['stok'];
+
+   if($nama_db == $nama_fr) {
+    if($harga_db == $harga_fr) {
+        if($stok_db == $stok_fr) {
+        $status="pembelian berhasil";
+
+        } else {
+            $status = "stok hanya ada 1"; 
+        }
+   
+    } else {
+        $status = "harga tidak sesuai";
+    }
+   } else {
+    $status = "barang tidak ada";
+   }
     
-
-    echo $id_db;
-    echo $nama_db;
-    echo $harga_db;
-    echo $stok_db;
-
 }
+
+
+$response = [
+    'nama_barang' => $nama_db,
+    'harga' => $harga_db,
+    'stok' => $stok_db,
+    'status' => $status,
+];
+echo json_encode($response);
 
 ?>
