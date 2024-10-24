@@ -1,4 +1,10 @@
 <?php
+
+// Mendapatkan username dan password dari frontend
+$user_fr = $_GET['user'];
+$pass_fr = $_GET['pass'];
+$status_fr = $_GET['status'];
+
 // Menambahkan informasi credentials
 $servername = "localhost"; // 127.0.0.1
 $username = "kemasaja_belajar";
@@ -15,8 +21,23 @@ while($baris = $hasil->fetch_assoc()) {
     $user_db = $baris['username'];
     $pass_db = $baris['password'];
 
-    echo $user_db;
+    if ($user_db == $user_fr){
+        if ($pass_db == $pass_fr){
+            $status ="Login Successful";
+        }else{
+            $status = "Wrong Password";
+        }
+    }else{
+        $status ="Wrong Username";
+    }
 
 }
+
+//API format JSON
+$response = [
+    'username' => $user_db,
+    'status' => $status
+];
+echo json_encode($response);
 
 ?>
