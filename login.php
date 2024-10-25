@@ -33,7 +33,7 @@ while($baris = $hasil->fetch_assoc()) {
 
 }
 
-//API format JSON
+//Convert API format JSON
 $response = [
     'username' => $user_db,
     'status' => $status
