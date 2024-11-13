@@ -54,15 +54,20 @@
             var user_input = document.getElementById("user_input").value; // memasukan username input dari pengguna ke variabel user_input
             var pass_input = document.getElementById("pass_input").value; // memasukan password input dari pengguna ke variabel pass_input
 
-            //            https://kemasaja.com/belajar-api/login.php?user=ahsan&pass=1234
             $.ajax({url: "https://kemasaja.com/belajar-api/login.php?user="+user_input+"&pass="+pass_input,
-                success: function(result){
-                            console.log(result.username);
-                            alert(result);
+                success: function(response){
+                            //{"username": "ahsan","status": "Login Successful"}
+                            var object = $.parseJSON(response);
+
+                            if (object.status == "Login Successful") {
+                              window.location.href = 'profile.php?user='+object.username;
+                              // https://kemasaja.com/belajar-api/profile.php?user=ahsan
+                            }else{
+                              alert(object.status);
+                            }
                         }
                     });
         }
-
     </script>
 </body>    
 </html>
