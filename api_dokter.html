@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>APLIKASI HALO DOC</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
+<head>
+<body>
+    <script>
+        getDoctorById(3);
+        function getDoctorById(id_dokter){
+            $.ajax({
+                headers: {'Authorization': "Basic " + btoa("demo:demo")},
+                url: "https://doctouch.rsudkabupatensorong.co.id/api/doctor/"+id_dokter,
+                success: function(response){
+
+                            var json_str = JSON.stringify(response); 
+                            var object = $.parseJSON(json_str);
+                            
+                            if (object.status_code == "200" ) {
+                              console.log(object.data.name);
+                              console.log(object.data.specialist.name);
+                            }else{
+                              console.log('API ERROR')
+                            }
+
+                        }
+                    });
+        }
+    </script>
+</body>    
+</html>
